@@ -29,23 +29,6 @@ app.get("/", (req, res) => {
   res.send("Server Running..");
 });
 
-// Debug endpoint to check environment variables
-app.get("/api/debug/env", (req, res) => {
-  res.json({
-    hasJwtSecret: !!process.env.JWT_SECRET,
-    hasAdminEmail: !!process.env.ADMIN_EMAIL,
-    hasAdminPassword: !!process.env.ADMIN_PASSWORD,
-    hasMongoUri: !!process.env.MONGODB_URI,
-    hasCloudName: !!process.env.CLOUD_NAME,
-    adminEmail: process.env.ADMIN_EMAIL,
-    nodeEnv: process.env.NODE_ENV,
-  });
+app.listen(port, () => {
+  console.log(`Server Started on http://localhost:${port}`);
 });
-
-if (!process.env.VERCEL) {
-  app.listen(port, () => {
-    console.log(`Server Started on http://localhost:${port}`);
-  });
-}
-
-export default app;
