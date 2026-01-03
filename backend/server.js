@@ -13,6 +13,7 @@ const app = express()
 const port = process.env.PORT || 3000
 connectDB()
 connectCloudinary()
+// Environment variables loaded from Vercel
 
 // Middleware
 app.use(express.json())
