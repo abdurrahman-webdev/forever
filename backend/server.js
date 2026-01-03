@@ -13,7 +13,6 @@ const app = express();
 const port = process.env.PORT || 3000;
 connectDB();
 connectCloudinary();
-// Environment variables loaded from Vercel
 
 // Middleware
 app.use(express.json());
@@ -43,6 +42,10 @@ app.get("/api/debug/env", (req, res) => {
   });
 });
 
-app.listen(port, () => {
-  console.log(`Server Started on http://localhost:${port}`);
-});
+if (!process.env.VERCEL) {
+  app.listen(port, () => {
+    console.log(`Server Started on http://localhost:${port}`);
+  });
+}
+
+export default app;
